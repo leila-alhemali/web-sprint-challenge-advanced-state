@@ -4,7 +4,8 @@ import * as actionCreators from '../state/action-creators'
 
 export function Quiz(props) {
   const {
-    quiz 
+    quiz,
+    postAnswer
   } = props
   console.log(props)
   useEffect(
@@ -13,6 +14,19 @@ export function Quiz(props) {
       console.log(props.fetchQuiz)
     }
   , [])
+
+  const onClick = (evt) => {
+    
+    props.selectAnswer(props.quiz.answers[0].answer_id)
+  }
+  
+  const handleSubmit = evt => {
+    evt.preventDefault()
+    postAnswer({
+      quiz_id: props.quiz.quiz_id,
+      answer_id: props.quiz.answers[1].answer_id
+    })
+  }
 
   return (
     <div id="wrapper">
@@ -25,20 +39,20 @@ export function Quiz(props) {
             <div id="quizAnswers">
               <div className="answer selected">
                 {quiz.answers[0].text}
-                <button>
+                <button onClick={onClick}>
                   SELECTED
                 </button>
               </div>
 
               <div className="answer">
                 {quiz.answers[1].text}
-                <button>
+                <button onClick={onClick}>
                   Select
                 </button>
               </div>
             </div>
 
-            <button id="submitAnswerBtn">Submit answer</button>
+            <button onClick={handleSubmit} id="submitAnswerBtn">Submit answer</button>
           </>
         ) : 'Loading next quiz...'
       }
