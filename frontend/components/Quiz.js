@@ -15,16 +15,15 @@ export function Quiz(props) {
     }
   , [])
 
-  const onClick = (evt) => {
-    
-    props.selectAnswer(props.quiz.answers[0].answer_id)
+  const onClick = (id) => {
+    props.selectAnswer(id)
   }
   
   const handleSubmit = evt => {
     evt.preventDefault()
     postAnswer({
       quiz_id: props.quiz.quiz_id,
-      answer_id: props.quiz.answers[1].answer_id
+      answer_id: props.selectedAnswer
     })
   }
 
@@ -39,14 +38,14 @@ export function Quiz(props) {
             <div id="quizAnswers">
               <div className="answer selected">
                 {quiz.answers[0].text}
-                <button onClick={onClick}>
+                <button onClick={() => onClick(quiz.answers[0].answer_id)}>
                   SELECTED
                 </button>
               </div>
 
               <div className="answer">
                 {quiz.answers[1].text}
-                <button onClick={onClick}>
+                <button onClick={() => onClick(quiz.answers[1].answer_id)}>
                   Select
                 </button>
               </div>

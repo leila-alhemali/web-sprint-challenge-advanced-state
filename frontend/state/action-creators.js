@@ -6,8 +6,8 @@ export function moveClockwise() { }
 
 export function moveCounterClockwise() { }
 
-export function selectAnswer(value) { 
-  return {type:types.SET_SELECTED_ANSWER, payload: value }
+export function selectAnswer(answer_id) { 
+  return {type:types.SET_SELECTED_ANSWER, payload: answer_id}
 }
 
 export function setMessage(message) {
