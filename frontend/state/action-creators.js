@@ -45,6 +45,7 @@ export function postAnswer({quiz_id, answer_id}) {
     .then(res => {
       console.log(res)
       dispatch(selectAnswer(null))
+      dispatch(setQuiz(null))
       dispatch(fetchQuiz())
       dispatch(setMessage(res.data.message))
     })
