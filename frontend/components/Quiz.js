@@ -36,22 +36,22 @@ export function Quiz(props) {
             <h2>{quiz.question}</h2>
 
             <div id="quizAnswers">
-              <div className="answer selected">
+              <div className={`${props.selectedAnswer === quiz.answers[0].answer_id ? "answer selected" : "answer"}`}>
                 {quiz.answers[0].text}
                 <button onClick={() => onClick(quiz.answers[0].answer_id)}>
-                  SELECTED
+                {props.selectedAnswer === quiz.answers[0].answer_id ? "SELECTED" : "Select"}
                 </button>
               </div>
 
-              <div className="answer">
+              <div className={`${props.selectedAnswer === quiz.answers[1].answer_id ? "answer selected" : "answer"}`}>
                 {quiz.answers[1].text}
                 <button onClick={() => onClick(quiz.answers[1].answer_id)}>
-                  Select
+                {props.selectedAnswer === quiz.answers[1].answer_id ? "SELECTED" : "Select"}
                 </button>
               </div>
             </div>
 
-            <button onClick={handleSubmit} id="submitAnswerBtn">Submit answer</button>
+            <button onClick={handleSubmit} disabled={!props.selectedAnswer} id="submitAnswerBtn">Submit answer</button>
           </>
         ) : 'Loading next quiz...'
       }
