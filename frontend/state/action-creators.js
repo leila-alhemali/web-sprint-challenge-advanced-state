@@ -12,7 +12,9 @@ export function setMessage(message) {
   return {type: types.SET_INFO_MESSAGE, payload: message}
  }
 
-export function setQuiz() { }
+export function setQuiz(question) { 
+  return {type: types.SET_QUIZ_INTO_STATE, payload: question}
+}
 
 export function inputChange(value) {
   return {type: types.INPUT_CHANGE, payload: value}
@@ -25,7 +27,14 @@ export function resetForm() {
 // ❗ Async action creators
 export function fetchQuiz() {
   return function (dispatch) {
-    // First, dispatch an action to reset the quiz state (so the "Loading next quiz..." message can display)
+   axios.get(`http://localhost:9000/api/quiz/next`)
+   .then(res => {
+     console.log(res)
+     dispatch(setQuiz(res.data))
+   })
+   .catch(err => {
+     console.log(err)
+   })
     // On successful GET:
     // - Dispatch an action to send the obtained quiz to its state
   }
