@@ -9,6 +9,7 @@ export function Form(props) {
     form
   } = props
 
+  console.log(props.form)
   const onChange = evt => {
     const { value, id } = evt.target
     const newQuestion = {...form, [id]:value}
@@ -35,9 +36,9 @@ export function Form(props) {
   return (
     <form id="form" onSubmit={onSubmit}>
       <h2>Create New Quiz</h2>
-      <input maxLength={50} onChange={onChange} id="newQuestion" placeholder="Enter question" />
-      <input maxLength={50} onChange={onChange} id="newTrueAnswer" placeholder="Enter true answer" />
-      <input maxLength={50} onChange={onChange} id="newFalseAnswer" placeholder="Enter false answer" />
+      <input maxLength={50} onChange={onChange} id="newQuestion" value={form.newQuestion} placeholder="Enter question"/> 
+      <input maxLength={50} onChange={onChange} id="newTrueAnswer" value={form.newTrueAnswer} placeholder="Enter true answer" />
+      <input maxLength={50} onChange={onChange} id="newFalseAnswer" value ={form.newFalseAnswer} placeholder="Enter false answer" />
       <button disabled={!enabled}id="submitNewQuizBtn">Submit new quiz</button>
     </form>
   )

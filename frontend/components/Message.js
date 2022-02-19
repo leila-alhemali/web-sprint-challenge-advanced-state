@@ -7,6 +7,8 @@ export function Message(props) {
     infoMessage
   } = props
 
+
+
   return <div id="message">{infoMessage}</div>
 }
 

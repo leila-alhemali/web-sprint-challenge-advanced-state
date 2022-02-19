@@ -7,7 +7,8 @@ export function Quiz(props) {
     quiz,
     postAnswer
   } = props
-  console.log(props)
+
+  console.log(props.form)
   useEffect(
     () => {
       props.fetchQuiz()
